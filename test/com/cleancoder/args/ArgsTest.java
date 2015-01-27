@@ -63,7 +63,7 @@ public class ArgsTest {
 
   @Test
   public void testSimpleBooleanPresent() throws Exception {
-    Args args = new Args("x", new String[]{"-x"});
+    Args args = new Args("x+", new String[]{"-x"});
     assertEquals(true, args.getBoolean('x'));
     assertEquals(1, args.nextArgument());
   }
@@ -89,7 +89,7 @@ public class ArgsTest {
 
   @Test
   public void testSpacesInFormat() throws Exception {
-    Args args = new Args("x, y", new String[]{"-xy"});
+    Args args = new Args("x+, y+", new String[]{"-xy"});
     assertTrue(args.has('x'));
     assertTrue(args.has('y'));
     assertEquals(1, args.nextArgument());
@@ -212,7 +212,7 @@ public class ArgsTest {
 
   @Test
   public void testExtraArguments() throws Exception {
-    Args args = new Args("x,y*", new String[]{"-x", "-y", "alpha", "beta"});
+    Args args = new Args("x+,y*", new String[]{"-x", "-y", "alpha", "beta"});
     assertTrue(args.getBoolean('x'));
     assertEquals("alpha", args.getString('y'));
     assertEquals(3, args.nextArgument());
@@ -220,7 +220,7 @@ public class ArgsTest {
 
   @Test
   public void testExtraArgumentsThatLookLikeFlags() throws Exception {
-    Args args = new Args("x,y", new String[]{"-x", "alpha", "-y", "beta"});
+    Args args = new Args("x+,y+", new String[]{"-x", "alpha", "-y", "beta"});
     assertTrue(args.has('x'));
     assertFalse(args.has('y'));
     assertTrue(args.getBoolean('x'));
