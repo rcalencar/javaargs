@@ -1,4 +1,8 @@
-package com.cleancoder.args;
+package com.cleancoder.args.marshaler;
+
+import com.cleancoder.args.Args;
+import com.cleancoder.args.ArgsException;
+import com.cleancoder.args.ArgumentMarshaler;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -24,7 +28,8 @@ public class MapArgumentMarshaler implements ArgumentMarshaler {
     }
   }
 
-  public static Map<String, String> getValue(ArgumentMarshaler am) {
+  public static Map<String, String> getValue(Args args, char arg) {
+    ArgumentMarshaler am = args.get(arg);
     if (am != null && am instanceof MapArgumentMarshaler)
       return ((MapArgumentMarshaler) am).map;
     else
