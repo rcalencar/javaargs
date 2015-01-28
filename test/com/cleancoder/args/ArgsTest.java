@@ -223,6 +223,7 @@ public class ArgsTest {
     assertTrue(b);
     String y = StringArgumentMarshaler.getValue(args, 'y');
     assertEquals("alpha", y);
+
     assertEquals(3, args.nextArgument());
   }
 
