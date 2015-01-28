@@ -101,7 +101,7 @@ public class ArgsTest {
 
   @Test
   public void testSimpleIntPresent() throws Exception {
-    Args args = new Args("x#", new String[]{"-x", "42"});
+    Args args = new Args("x@", new String[]{"-x", "42"});
     assertTrue(args.has('x'));
     int x = IntegerArgumentMarshaler.getValue(args, 'x');
     assertEquals(42, x);
@@ -111,7 +111,7 @@ public class ArgsTest {
   @Test
   public void testInvalidInteger() throws Exception {
     try {
-      new Args("x#", new String[]{"-x", "Forty two"});
+      new Args("x@", new String[]{"-x", "Forty two"});
       fail();
     } catch (ArgsException e) {
       assertEquals(INVALID_INTEGER, e.getErrorCode());
@@ -124,7 +124,7 @@ public class ArgsTest {
   @Test
   public void testMissingInteger() throws Exception {
     try {
-      new Args("x#", new String[]{"-x"});
+      new Args("x@", new String[]{"-x"});
       fail();
     } catch (ArgsException e) {
       assertEquals(MISSING_INTEGER, e.getErrorCode());
@@ -134,7 +134,7 @@ public class ArgsTest {
 
   @Test
   public void testSimpleDoublePresent() throws Exception {
-    Args args = new Args("x##", new String[]{"-x", "42.3"});
+    Args args = new Args("x@@", new String[]{"-x", "42.3"});
     assertTrue(args.has('x'));
     double x = DoubleArgumentMarshaler.getValue(args, 'x');
     assertEquals(42.3, x, .001);
@@ -143,7 +143,7 @@ public class ArgsTest {
   @Test
   public void testInvalidDouble() throws Exception {
     try {
-      new Args("x##", new String[]{"-x", "Forty two"});
+      new Args("x@@", new String[]{"-x", "Forty two"});
       fail();
     } catch (ArgsException e) {
       assertEquals(INVALID_DOUBLE, e.getErrorCode());
@@ -155,7 +155,7 @@ public class ArgsTest {
   @Test
   public void testMissingDouble() throws Exception {
     try {
-      new Args("x##", new String[]{"-x"});
+      new Args("x@@", new String[]{"-x"});
       fail();
     } catch (ArgsException e) {
       assertEquals(MISSING_DOUBLE, e.getErrorCode());
