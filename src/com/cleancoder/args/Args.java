@@ -48,10 +48,14 @@ public class Args {
         validateSchemaElementId(elementId);
 
         if (marshalers.containsKey(elementTail)) {
-            marshalersElements.put(elementId, (ArgumentMarshaler) marshalers.get(elementTail).newInstance());
+            marshalersElements.put(elementId, newArgumentMarshalerElementFor(elementTail));
         } else {
             throw new ArgsException(INVALID_ARGUMENT_FORMAT, elementId, elementTail);
         }
+    }
+
+    private ArgumentMarshaler newArgumentMarshalerElementFor(String elementTail) throws InstantiationException, IllegalAccessException {
+        return (ArgumentMarshaler) marshalers.get(elementTail).newInstance();
     }
 
     private void validateSchemaElementId(char elementId) throws ArgsException {
